@@ -1,6 +1,7 @@
 import { IPost } from "@/models/blog";
 import Link from "next/link"
 import { useState } from "react";
+import pic from "@/public/Screenshot 2024-07-04 at 20.52.04.png"
 
 const getPosts = async (): Promise<{ posts: IPost[] }> => {
   try {
@@ -31,7 +32,7 @@ export default async function BlogList() {
                  <Link href="#" className="group" prefetch={false}>
                  <div  className="bg-muted rounded-lg overflow-hidden shadow-lg transition-all hover:shadow-xl">
                    <img
-                     src="/placeholder.svg"
+                     src={pic.src}
                      alt="Blog Post Image"
                      width={400}
                      height={200}
