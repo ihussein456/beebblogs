@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import './globals.css'
 import { ReactNode } from 'react';
 import Navbar from '@/components/navbar';
+import Footer from '@/components/footer';
 
 interface LayoutProps {
   children: ReactNode;
@@ -34,6 +35,7 @@ export default function Layout({ children }: LayoutProps) {
       >
         <Navbar/>
         {children}
+        <Footer/>
       </body>
     </html>
   )
