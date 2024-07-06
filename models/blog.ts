@@ -13,11 +13,12 @@ interface IPost extends Document {
 const postSchema: Schema = new Schema({
   title: { type: String, required: true },
   body: { type: String, required: true },
-  category: { type: String, required: true },
+  category: { type: String},
   likes: { type: Number, default: 0 },
   tags: { type: [String] },
-  date: { type: Date, default: Date.now }
-});
+  date: { type: Date, default: Date.now },
+}, { timestamps: true}
+);
 
 const Posts: Model<IPost> = mongoose.models.Posts || mongoose.model<IPost>('Posts', postSchema);
 

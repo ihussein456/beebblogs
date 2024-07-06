@@ -1,19 +1,28 @@
+
 import { IPost } from "@/models/blog";
 import Link from "next/link"
 import { useState } from "react";
 import pic from "@/public/Screenshot 2024-07-04 at 20.52.04.png"
+import { getBaseUrl } from "@/utils/getBaseUrl";
+
+//const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+
 
 const getPosts = async (): Promise<{ posts: IPost[] }> => {
+  const baseUrl = getBaseUrl(); // Get the correct base URL
+  const endpoint = `${baseUrl}/api/blogs`;
   try {
-      const res = await fetch('http://localhost:3000/api/blogs',{
+      const res = await fetch(endpoint, {
           cache: "no-store"
       });
       if (!res.ok) {
-          throw new Error("Failed to fetch Posts");
+          throw new Error("Failed to fetch posts");
       }
-      return res.json();
+      const data: { posts: IPost[] } = await res.json();
+      return data;
   } catch (err) {
-      console.log("error getting posts", err);
+      console.log("Error getting posts", err);
       return { posts: [] }; // Return an empty array in case of error
   }
 };
@@ -29,7 +38,7 @@ export default async function BlogList() {
         <section className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((p) => (
                <div key={p._id}>
-                 <Link href="#" className="group" prefetch={false}>
+                 <Link href={`/post/${p._id}`} className="group" prefetch={false}>
                  <div  className="bg-muted rounded-lg overflow-hidden shadow-lg transition-all hover:shadow-xl">
                    <img
                      src={pic.src}
