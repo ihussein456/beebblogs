@@ -1,15 +1,13 @@
 
 import { IPost } from "@/models/blog";
 import Link from "next/link"
-import { useState } from "react";
 import pic from "@/public/Screenshot 2024-07-04 at 20.52.04.png"
 import { getBaseUrl } from "@/utils/getBaseUrl";
 
-//const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 
 
-const getPosts = async (): Promise<{ posts: IPost[] }> => {
+  const getPosts = async (): Promise<{ posts: IPost[] }> => {
   const baseUrl = getBaseUrl(); // Get the correct base URL
   const endpoint = `${baseUrl}/api/blogs`;
   try {
@@ -35,7 +33,7 @@ export default async function BlogList() {
     <div className="flex flex-col min-h-[100dvh]">
       <main className="flex-1 py-12">
         <div className="container mx-auto px-4 md:px-6">
-        <section className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <section className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">  
             {posts.map((p) => (
                <div key={p._id}>
                  <Link href={`/post/${p._id}`} className="group" prefetch={false}>

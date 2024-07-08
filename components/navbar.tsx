@@ -5,7 +5,7 @@ export default function Navbar(){
         <div>
         <header className="bg-primary text-primary-foreground py-4 px-6 shadow">
             <div className="container mx-auto flex items-center justify-between">
-            <Link href="#" className="text-2xl font-bold" prefetch={false}>
+            <Link href="/" className="text-2xl font-bold" prefetch={false}>
                 Blog Site
             </Link>
             <nav className="hidden md:flex items-center gap-4">

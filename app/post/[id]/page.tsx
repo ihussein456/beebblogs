@@ -1,8 +1,16 @@
-export default function BlogPage(){
+"use client"
 
+import BlogPage from "@/components/blogPage"
+import { useParams } from "next/navigation"
+
+
+
+export default async function Blog({params}: {params: {id: string}}){
+
+    const { id } = params;
     return(
         <div>
-            <h1>Post Page</h1>
+            <BlogPage id={id}/>
         </div>
     )
 }
