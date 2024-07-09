@@ -16,17 +16,27 @@ export async function GET() {
   }
 }
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
   try {
-    await connectMongoDB();
-    const post = await Posts.create(req.body);
-    if (!post) {
-      return NextResponse.json({ message: 'Post not created' });
-    }
-    return NextResponse.json({ post });
-  } catch (error) {
-    console.error('Error creating post', error);
-    return NextResponse.json({ error: 'Error creating post' });
-  }
+      const reqBody = await req.json();
+      console.log("Request body:", reqBody);
 
+      const { title, body } = reqBody;
+      console.log("Parsed title and description:", { title, body });
+
+      if (!title || !body) {
+          return NextResponse.json({ message: 'Title and description are required' }, { status: 400 });
+      }
+
+      await connectMongoDB();
+      console.log("Connected to MongoDB");
+
+      const newTodo = await Posts.create({ title, body });
+      console.log("New todo created:", newTodo);
+
+      return NextResponse.json({ message: 'Post Created', todo: newTodo }, { status: 201 });
+  } catch (error) {
+      console.error('Error creating todo:', error);
+      return NextResponse.json({ message: 'Failed to create Post' }, { status: 500 });
+  }
 }
