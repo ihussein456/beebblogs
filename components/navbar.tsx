@@ -9,11 +9,11 @@ export default function Navbar(){
                 Blog Site
             </Link>
             <nav className="hidden md:flex items-center gap-4">
-                <Link href="#" className="hover:underline" prefetch={false}>
+                <Link href="/" className="hover:underline" prefetch={false}>
                 Home
                 </Link>
-                <Link href="#" className="hover:underline" prefetch={false}>
-                About
+                <Link href="/addPost" className="hover:underline" prefetch={false}>
+                Add Post
                 </Link>
                 <Link href="#" className="hover:underline" prefetch={false}>
                 Contact

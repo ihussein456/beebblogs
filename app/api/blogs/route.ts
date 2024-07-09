@@ -40,3 +40,26 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: 'Failed to create Post' }, { status: 500 });
   }
 }
+
+export async function DELETE(req: Request) {
+  try {
+      const { id } = await req.json();
+      
+      if (!id) {
+          return NextResponse.json({ message: "Id is required" }, { status: 400 });
+      }
+      
+      await connectMongoDB();
+      
+      const deletedTodo = await Posts.findByIdAndDelete(id);
+      
+      if (!deletedTodo) {
+          return NextResponse.json({ message: "Todo not found" }, { status: 404 });
+      }
+      
+      return NextResponse.json({ message: "Todo deleted" }, { status: 200 });
+  } catch (error) {
+      console.error("Error deleting todo:", error);
+      return NextResponse.json({ message: "Failed to delete Todo" }, { status: 500 });
+  }
+}
