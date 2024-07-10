@@ -6,6 +6,9 @@ import './globals.css'
 import { ReactNode } from 'react';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
+import type { Metadata } from "next";
+
+
 
 interface LayoutProps {
   children: ReactNode;
@@ -22,6 +25,11 @@ const fontBody = Manrope({
   display: 'swap',
   variable: '--font-body',
 })
+
+export const metadata: Metadata = {
+  title: "Beeb Blogs",
+  description: "A blog site for all your blogging needs"
+};
 
 export default function Layout({ children }: LayoutProps) {
   return (
