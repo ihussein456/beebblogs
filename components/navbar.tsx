@@ -15,8 +15,8 @@ export default function Navbar(){
                 <Link href="/addPost" className="hover:underline" prefetch={false}>
                 Add Post
                 </Link>
-                <Link href="#" className="hover:underline" prefetch={false}>
-                Contact
+                <Link href="/login" className="hover:underline" prefetch={false}>
+                Login
                 </Link>
             </nav>
             </div>

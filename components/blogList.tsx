@@ -1,10 +1,7 @@
-
 import { IPost } from "@/models/blog";
 import Link from "next/link"
 import pic from "@/public/Screenshot 2024-07-04 at 20.52.04.png"
 import { getBaseUrl } from "@/utils/getBaseUrl";
-
-
 
 
   const getPosts = async (): Promise<{ posts: IPost[] }> => {

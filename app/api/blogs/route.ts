@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import connectMongoDB from '@/lib/db';
 import Posts from '@/models/blog';
 
@@ -41,25 +41,25 @@ export async function POST(req: Request) {
   }
 }
 
-export async function DELETE(req: Request) {
+export async function DELETE(req: NextRequest) {
   try {
-      const { id } = await req.json();
-      
-      if (!id) {
-          return NextResponse.json({ message: "Id is required" }, { status: 400 });
-      }
-      
-      await connectMongoDB();
-      
-      const deletedTodo = await Posts.findByIdAndDelete(id);
-      
-      if (!deletedTodo) {
-          return NextResponse.json({ message: "Todo not found" }, { status: 404 });
-      }
-      
-      return NextResponse.json({ message: "Todo deleted" }, { status: 200 });
+    const { id } = await req.json();
+
+    if (!id) {
+      return NextResponse.json({ message: "Id is required" }, { status: 400 });
+    }
+
+    await connectMongoDB();
+
+    const deletedPost = await Posts.findByIdAndDelete(id);
+
+    if (!deletedPost) {
+      return NextResponse.json({ message: "Post not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: "Post deleted" }, { status: 200 });
   } catch (error) {
-      console.error("Error deleting todo:", error);
-      return NextResponse.json({ message: "Failed to delete Todo" }, { status: 500 });
+    console.error("Error deleting Post:", error);
+    return NextResponse.json({ message: "Failed to delete Post" }, { status: 500 });
   }
 }
