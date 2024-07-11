@@ -30,17 +30,19 @@ export function LoginForm() {
       <form action={formAction}>
         <CardContent className="grid gap-4">
                 <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="username" type="username" placeholder="m@example.com" required />
+                <Label htmlFor="username">Username</Label>
+                <Input id="username" name="username" type="username" placeholder="m@example.com" required />
                 </div>
                 <div className="grid gap-2">
                 <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" required />
+                <Input id="password" name="password" type="password" required />
                 </div>
         </CardContent>
         <CardFooter>
             <Button className="w-full">Sign in</Button>
         </CardFooter>
+        {state?.error && <p className="text-rose-500 font-normal text-left text-lg">{state.error}</p>}
+
       </form>
 
     </Card>

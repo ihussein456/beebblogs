@@ -5,8 +5,8 @@ import { sessionOptions, SessionData, defaultSession } from "./lib/lib"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
-    
-let username = "john"
+
+let username = "beeb"
 let isPro = true
 let isBlocked = false
 
@@ -49,7 +49,7 @@ export const login = async (
 
 
     await session.save()
-    redirect("/profile")
+    redirect("/")
 }
 
 export const logout = async() => {
@@ -83,6 +83,4 @@ export const changeUsername = async (formData:FormData) => {
 
     await session.save()
     revalidatePath("/profile")
-  
-
 }
